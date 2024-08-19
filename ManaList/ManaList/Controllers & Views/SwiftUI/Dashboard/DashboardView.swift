@@ -15,7 +15,9 @@ struct DashboardView: View {
         NavigationStack {
             List {
                 Section { } header: {
-                    ShoppingListsTabView(lists: $store.shoppingLists, selectedListId: $store.selectedShoppingListId) { selectedList in
+                    ShoppingListsTabView(lists: $store.shoppingLists,
+                                         selectedListId: $store.selectedShoppingListId,
+                                         summaryList: $store.summaryList) { selectedList in
                         store.send(.selectList(selectedList))
                     }
                     .textCase(nil)

@@ -14,7 +14,14 @@ struct DashboardFeature {
     struct State: Equatable {
         @Presents var shoppingListsEditorDestination: ShoppingListsFeature.State?
         var shoppingLists: [ShoppingList] = []
-        var selectedShoppingListId: UUID = UUID.init()
+        var summaryList: ShoppingList
+        var selectedShoppingListId: UUID
+
+        init() {
+            let summaryListMock = ShoppingList(title: "Summary", isSummary: true)
+            self.summaryList = summaryListMock
+            self.selectedShoppingListId = summaryListMock.id
+        }
     }
 
     enum Action: Sendable, BindableAction {

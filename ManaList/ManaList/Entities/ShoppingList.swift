@@ -12,9 +12,12 @@ import SwiftData
 final class ShoppingList: Sendable, Identifiable {
     var id: UUID = UUID()
     var title: String
+    var items: [ShoppingItem] = []
+    var isSummary: Bool
 
-    private init(title: String) {
+    init(title: String, isSummary: Bool = false) {
         self.title = title
+        self.isSummary = isSummary
     }
 
     @MainActor

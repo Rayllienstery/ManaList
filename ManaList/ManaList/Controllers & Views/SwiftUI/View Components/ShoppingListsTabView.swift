@@ -10,6 +10,7 @@ import SwiftUI
 struct ShoppingListsTabView: View {
     @Binding var lists: [ShoppingList]
     @Binding var selectedListId: UUID
+    @Binding var summaryList: ShoppingList
 
     @State var onTap: (ShoppingList) -> Void
 
@@ -18,6 +19,7 @@ struct ShoppingListsTabView: View {
             ZStack {
                 HStack(spacing: 8) {
                     let _ = print(lists.map({ $0.id }))
+                    TabView(list: summaryList)
                     ForEach(lists) {
                         TabView(list: $0)
                     }
@@ -54,6 +56,14 @@ struct ShoppingListsTabView: View {
     struct ShoppingListsTabPreview: View {
         @State var lists: [ShoppingList]
         @State var selectedId: UUID
+        @State var summary: ShoppingList
+
+        init(lists: [ShoppingList]) {
+            let summaryList = ShoppingList(title: "Summary", isSummary: true)
+            self.lists = lists
+            self.summary = summaryList
+            self.selectedId = summaryList.id
+        }
 
         var body: some View {
             NavigationStack {
@@ -63,7 +73,9 @@ struct ShoppingListsTabView: View {
                             Text("List item \($0)")
                         }
                     } header: {
-                        ShoppingListsTabView(lists: $lists, selectedListId: $selectedId) { list in
+                        ShoppingListsTabView(lists: $lists, 
+                                             selectedListId: $selectedId,
+                                             summaryList: $summary) { list in
                             selectedId = list.id
                         }
                         .textCase(nil)
@@ -77,5 +89,5 @@ struct ShoppingListsTabView: View {
     }
 
     let lists = ShoppingList.stabData()
-    return ShoppingListsTabPreview(lists: lists, selectedId: lists[0].id)
+    return ShoppingListsTabPreview(lists: lists)
 }
