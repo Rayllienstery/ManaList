@@ -13,11 +13,8 @@ import ComposableArchitecture
 struct ManaListApp: App {
     var body: some Scene {
         WindowGroup {
-//            DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
-//                DashboardFeature()
-//            }))
-            ShoppingListsView(store: Store(initialState: ShoppingListsFeature.State(), reducer: {
-                ShoppingListsFeature()
+            DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
+                DashboardFeature()
             }))
             .modelContainer(PersistenceController.shared.sdContainer)
         }

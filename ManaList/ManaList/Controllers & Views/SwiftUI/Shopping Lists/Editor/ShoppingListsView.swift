@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ShoppingListsView: View {
-    @State var store: StoreOf<ShoppingListsFeature>
+    @Bindable var store: StoreOf<ShoppingListsFeature>
 
     var body: some View {
         NavigationStack {
