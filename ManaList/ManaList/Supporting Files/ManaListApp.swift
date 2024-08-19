@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
+import ComposableArchitecture
 
 @main
 struct ManaListApp: App {
     var body: some Scene {
         WindowGroup {
-//            DashboardView()
-            Text("Hello, World!")
+//            DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
+//                DashboardFeature()
+//            }))
+            ShoppingListsView(store: Store(initialState: ShoppingListsFeature.State(), reducer: {
+                ShoppingListsFeature()
+            }))
+            .modelContainer(PersistenceController.shared.sdContainer)
         }
     }
 }

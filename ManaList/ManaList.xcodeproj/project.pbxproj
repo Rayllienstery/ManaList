@@ -8,13 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		BC8A67D72C6FB8BE00534616 /* ManaListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */; };
-		BC8A67D92C6FB8BE00534616 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D82C6FB8BE00534616 /* ContentView.swift */; };
+		BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D82C6FB8BE00534616 /* DashboardView.swift */; };
 		BC8A67DB2C6FB8BF00534616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8A67DA2C6FB8BF00534616 /* Assets.xcassets */; };
 		BC8A67DE2C6FB8BF00534616 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8A67DD2C6FB8BF00534616 /* Preview Assets.xcassets */; };
 		BC8A67E82C6FB8C000534616 /* ManaListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67E72C6FB8C000534616 /* ManaListTests.swift */; };
 		BC8A67F22C6FB8C000534616 /* ManaListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67F12C6FB8C000534616 /* ManaListUITests.swift */; };
 		BC8A67F42C6FB8C000534616 /* ManaListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67F32C6FB8C000534616 /* ManaListUITestsLaunchTests.swift */; };
 		BC8A68032C6FBC4800534616 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = BC8A68022C6FBC4800534616 /* ComposableArchitecture */; };
+		BC8A680E2C6FEFAE00534616 /* ShoppingListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A680D2C6FEFAE00534616 /* ShoppingListsView.swift */; };
+		BC8A68102C6FF70B00534616 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A680F2C6FF70B00534616 /* ShoppingList.swift */; };
+		BC8A68132C6FFC5400534616 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A68122C6FFC5400534616 /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +40,7 @@
 /* Begin PBXFileReference section */
 		BC8A67D32C6FB8BE00534616 /* ManaList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaListApp.swift; sourceTree = "<group>"; };
-		BC8A67D82C6FB8BE00534616 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BC8A67D82C6FB8BE00534616 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		BC8A67DA2C6FB8BF00534616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC8A67DD2C6FB8BF00534616 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BC8A67E32C6FB8C000534616 /* ManaListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManaListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +48,9 @@
 		BC8A67ED2C6FB8C000534616 /* ManaListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManaListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8A67F12C6FB8C000534616 /* ManaListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaListUITests.swift; sourceTree = "<group>"; };
 		BC8A67F32C6FB8C000534616 /* ManaListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaListUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BC8A680D2C6FEFAE00534616 /* ShoppingListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListsView.swift; sourceTree = "<group>"; };
+		BC8A680F2C6FF70B00534616 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
+		BC8A68122C6FFC5400534616 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +102,10 @@
 		BC8A67D52C6FB8BE00534616 /* ManaList */ = {
 			isa = PBXGroup;
 			children = (
-				BC8A68072C6FEE7800534616 /* Supporting Files */,
 				BC8A68052C6FBC7900534616 /* Controllers & Views */,
-				BC8A68002C6FB8E400534616 /* Entries */,
+				BC8A68002C6FB8E400534616 /* Entities */,
+				BC8A68112C6FFC3B00534616 /* Enviroment */,
+				BC8A68072C6FEE7800534616 /* Supporting Files */,
 				BC8A68042C6FBC6500534616 /* Resources */,
 			);
 			path = ManaList;
@@ -129,11 +136,12 @@
 			path = ManaListUITests;
 			sourceTree = "<group>";
 		};
-		BC8A68002C6FB8E400534616 /* Entries */ = {
+		BC8A68002C6FB8E400534616 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				BC8A680F2C6FF70B00534616 /* ShoppingList.swift */,
 			);
-			path = Entries;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		BC8A68042C6FBC6500534616 /* Resources */ = {
@@ -156,7 +164,8 @@
 		BC8A68062C6FBC9500534616 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				BC8A67D82C6FB8BE00534616 /* ContentView.swift */,
+				BC8A680A2C6FEF5900534616 /* Dashboard */,
+				BC8A680B2C6FEF6600534616 /* Shopping Lists */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -167,6 +176,38 @@
 				BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BC8A680A2C6FEF5900534616 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				BC8A67D82C6FB8BE00534616 /* DashboardView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		BC8A680B2C6FEF6600534616 /* Shopping Lists */ = {
+			isa = PBXGroup;
+			children = (
+				BC8A680C2C6FEF8E00534616 /* Editor */,
+			);
+			path = "Shopping Lists";
+			sourceTree = "<group>";
+		};
+		BC8A680C2C6FEF8E00534616 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				BC8A680D2C6FEFAE00534616 /* ShoppingListsView.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		BC8A68112C6FFC3B00534616 /* Enviroment */ = {
+			isa = PBXGroup;
+			children = (
+				BC8A68122C6FFC5400534616 /* Persistence.swift */,
+			);
+			path = Enviroment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,8 +346,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC8A67D92C6FB8BE00534616 /* ContentView.swift in Sources */,
+				BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */,
+				BC8A68102C6FF70B00534616 /* ShoppingList.swift in Sources */,
+				BC8A680E2C6FEFAE00534616 /* ShoppingListsView.swift in Sources */,
 				BC8A67D72C6FB8BE00534616 /* ManaListApp.swift in Sources */,
+				BC8A68132C6FFC5400534616 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
