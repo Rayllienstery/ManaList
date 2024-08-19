@@ -12,20 +12,24 @@ import SwiftData
 final class ManaListTests: XCTestCase {
     let container: ModelContainer = PersistenceController(inMemory: true).sdContainer
 
-    override class func setUp() {
-    }
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     @MainActor override func tearDown() {
-        let lists = ShoppingList.fetch()
+        let lists = ShoppingList.fetch(container: container)
         lists.forEach({ $0.delete() })
+    }
+
+    @MainActor func testFetch() throws {
+        let titleList = (0..<5).map({ "Just a title \($0)" })
+        do {
+            for title in titleList {
+                try ShoppingList.insert(title: title, container: container)
+            }
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+
+        let lists = ShoppingList.fetch(container: container)
+
+        XCTAssertTrue(lists.count == 5)
     }
 
     @MainActor func testTitle_CorrectData() throws {
