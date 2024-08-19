@@ -19,10 +19,14 @@ struct PersistenceController: Persistence {
 
     init(inMemory: Bool = false) {
         let config = ModelConfiguration(isStoredInMemoryOnly: inMemory)
-        let swiftDataContainer = try! ModelContainer(
-            for: ShoppingList.self,
-            configurations: config)
-        self.sdContainer = swiftDataContainer
+        do {
+            let swiftDataContainer = try ModelContainer(
+                for: ShoppingList.self, ShoppingItem.self,
+                configurations: config)
+            self.sdContainer = swiftDataContainer
+        } catch {
+            fatalError(error.localizedDescription)
+        }
     }
 }
 

@@ -47,4 +47,5 @@ struct DashboardView: View {
     DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
         DashboardFeature()
     }))
+    .modelContainer(PersistenceController.shared.sdContainer)
 }

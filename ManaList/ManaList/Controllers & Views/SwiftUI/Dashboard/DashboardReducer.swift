@@ -48,10 +48,6 @@ struct DashboardFeature {
                 }
             case .updateLists(let lists):
                 state.shoppingLists = lists
-                if !lists.isEmpty,
-                   !lists.map({ $0.id }).contains(state.selectedShoppingListId) {
-                    state.selectedShoppingListId = lists[0].id
-                }
                 return .none
 
             case .openShoppingLists:

@@ -13,7 +13,7 @@ final class ShoppingList: Sendable, Identifiable {
     var id: UUID = UUID()
     var title: String
     var items: [ShoppingItem] = []
-    var isSummary: Bool
+    var isSummary: Bool = false
 
     init(title: String, isSummary: Bool = false) {
         self.title = title
