@@ -5,10 +5,12 @@
 //  Created by Konstantin Kolosov on 17.08.2024.
 //
 
+import Foundation
 import SwiftData
 
 @Model
-final class ShoppingList: Sendable {
+final class ShoppingList: Sendable, Identifiable {
+    var id: UUID = UUID()
     var title: String
 
     private init(title: String) {
@@ -34,5 +36,15 @@ final class ShoppingList: Sendable {
     @MainActor
     func delete(container: ModelContainer = .current) {
         container.mainContext.delete(self)
+    }
+}
+
+extension ShoppingList {
+    @MainActor
+    static func stabData() -> [ShoppingList] {
+        let container = PersistenceController.init(inMemory: true).sdContainer
+        let lists = (0..<5).map({ ShoppingList(title: "Stab \($0)") })
+        lists.forEach({ container.mainContext.insert($0) })
+        return lists
     }
 }

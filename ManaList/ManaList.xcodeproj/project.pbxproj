@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC067C7E2C73B2980099268E /* ShoppingListsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */; };
 		BC8A67D72C6FB8BE00534616 /* ManaListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */; };
 		BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D82C6FB8BE00534616 /* DashboardView.swift */; };
 		BC8A67DB2C6FB8BF00534616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8A67DA2C6FB8BF00534616 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 		BC8A680E2C6FEFAE00534616 /* ShoppingListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A680D2C6FEFAE00534616 /* ShoppingListsView.swift */; };
 		BC8A68102C6FF70B00534616 /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A680F2C6FF70B00534616 /* ShoppingList.swift */; };
 		BC8A68132C6FFC5400534616 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A68122C6FFC5400534616 /* Persistence.swift */; };
+		BCA859642C737FCD005A71F9 /* DashboardReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA859632C737FCD005A71F9 /* DashboardReducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListsTabView.swift; sourceTree = "<group>"; };
 		BC8A67D32C6FB8BE00534616 /* ManaList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaListApp.swift; sourceTree = "<group>"; };
 		BC8A67D82C6FB8BE00534616 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -51,6 +54,7 @@
 		BC8A680D2C6FEFAE00534616 /* ShoppingListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListsView.swift; sourceTree = "<group>"; };
 		BC8A680F2C6FF70B00534616 /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		BC8A68122C6FFC5400534616 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		BCA859632C737FCD005A71F9 /* DashboardReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardReducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC067C7C2C73B2650099268E /* View Components */ = {
+			isa = PBXGroup;
+			children = (
+				BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */,
+			);
+			path = "View Components";
+			sourceTree = "<group>";
+		};
 		BC8A67CA2C6FB8BE00534616 = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +176,7 @@
 		BC8A68062C6FBC9500534616 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				BC067C7C2C73B2650099268E /* View Components */,
 				BC8A680A2C6FEF5900534616 /* Dashboard */,
 				BC8A680B2C6FEF6600534616 /* Shopping Lists */,
 			);
@@ -182,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				BC8A67D82C6FB8BE00534616 /* DashboardView.swift */,
+				BCA859632C737FCD005A71F9 /* DashboardReducer.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -347,8 +361,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */,
+				BCA859642C737FCD005A71F9 /* DashboardReducer.swift in Sources */,
 				BC8A68102C6FF70B00534616 /* ShoppingList.swift in Sources */,
 				BC8A680E2C6FEFAE00534616 /* ShoppingListsView.swift in Sources */,
+				BC067C7E2C73B2980099268E /* ShoppingListsTabView.swift in Sources */,
 				BC8A67D72C6FB8BE00534616 /* ManaListApp.swift in Sources */,
 				BC8A68132C6FFC5400534616 /* Persistence.swift in Sources */,
 			);

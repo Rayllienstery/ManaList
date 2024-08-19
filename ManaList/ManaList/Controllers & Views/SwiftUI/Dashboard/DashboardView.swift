@@ -14,7 +14,14 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             List {
-                
+                Section { } header: {
+                    ShoppingListsTabView(lists: $store.shoppingLists, selectedListId: $store.selectedShoppingListId) { selectedList in
+                        store.send(.selectList(selectedList))
+                    }
+                    .textCase(nil)
+                    .padding(.horizontal, -40)
+                    .padding(.bottom, 16)
+                }
             }
             .toolbar {
                 Button {
@@ -24,8 +31,11 @@ struct DashboardView: View {
                 }
             }
             .navigationTitle("Shopping Cart")
-            .navigationDestination(item: $store.scope(state: \.shoppingLists, action: \.shoppingLists)) { store in
+            .navigationDestination(item: $store.scope(state: \.shoppingListsEditorDestination, action: \.shoppingLists)) { store in
                 ShoppingListsView(store: store)
+            }
+            .task {
+                store.send(.fetchShoppingLists)
             }
         }
     }
@@ -35,36 +45,4 @@ struct DashboardView: View {
     DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
         DashboardFeature()
     }))
-}
-
-@Reducer
-struct DashboardFeature {
-    @ObservableState
-    struct State: Equatable {
-        @Presents var shoppingLists: ShoppingListsFeature.State?
-    }
-
-    enum Action: Sendable, BindableAction {
-        case shoppingLists(PresentationAction<ShoppingListsFeature.Action>)
-        case binding(BindingAction<State>)
-        case openShoppingLists
-    }
-
-    var body: some Reducer<State, Action> {
-        BindingReducer()
-        Reduce { state, action in
-            switch action {
-            case .shoppingLists(_):
-                return .none
-            case .binding(_):
-                return .none
-            case .openShoppingLists:
-                state.shoppingLists = ShoppingListsFeature.State()
-                return .none
-            }
-        }
-        .ifLet(\.$shoppingLists, action: \.shoppingLists) {
-            ShoppingListsFeature()
-        }
-    }
 }
