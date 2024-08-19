@@ -7,8 +7,13 @@
 
 import XCTest
 @testable import ManaList
+import SwiftData
 
 final class ManaListTests: XCTestCase {
+    let container: ModelContainer = PersistenceController(inMemory: true).sdContainer
+
+    override class func setUp() {
+    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -18,18 +23,37 @@ final class ManaListTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    @MainActor override func tearDown() {
+        let lists = ShoppingList.fetch()
+        lists.forEach({ $0.delete() })
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    @MainActor func testTitle_CorrectData() throws {
+        do {
+            let title = "Title"
+            // Create a new list
+            try ShoppingList.insert(title: title, container: container)
+
+            // Fetch it
+            let lists = ShoppingList.fetch(container: container)
+            guard let list = lists.first else { XCTFail(); return }
+
+            // Lists count should be 1, this single list should have "Title" as a title
+            XCTAssertTrue(lists.count == 1 && list.title == title)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
+    @MainActor func testTitle_IncorrectData() throws {
+        do {
+            let title = ""
+            // Create a new list
+            try ShoppingList.insert(title: title, container: container)
+            XCTFail()
+        } catch {
+            XCTAssertTrue(error.localizedDescription ==
+                          ShoppingListsError.missingTitle.localizedDescription)
         }
     }
 

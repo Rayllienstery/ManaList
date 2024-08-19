@@ -98,7 +98,6 @@ struct ShoppingListsFeature {
             case .fetchShoppingLists:
                 return .run { send in
                     let lists = await ShoppingList.fetch()
-                    print(lists.count)
                     await send(.updateLists(lists))
                 }
 

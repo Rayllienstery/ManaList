@@ -17,7 +17,7 @@ struct PersistenceController: Persistence {
 
     var sdContainer: ModelContainer
 
-    private init(inMemory: Bool = false) {
+    init(inMemory: Bool = false) {
         let config = ModelConfiguration(isStoredInMemoryOnly: inMemory)
         let swiftDataContainer = try! ModelContainer(
             for: ShoppingList.self,
