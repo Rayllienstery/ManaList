@@ -34,7 +34,7 @@ struct DashboardView: View {
             }
             .navigationTitle("Shopping Cart")
             .navigationDestination(item: $store.scope(state: \.shoppingListsEditorDestination, action: \.shoppingLists)) { store in
-                ShoppingListsView(store: store)
+                ShoppingListsEditorView(store: store)
             }
             .task {
                 store.send(.fetchShoppingLists)

@@ -25,6 +25,7 @@ final class ShoppingList: Sendable, Identifiable {
         guard !title.isEmpty else { throw ShoppingListsError.missingTitle }
         let newList = ShoppingList(title: title)
         container.mainContext.insert(newList)
+        try? container.mainContext.save()
     }
 
     @MainActor 
@@ -39,6 +40,7 @@ final class ShoppingList: Sendable, Identifiable {
     @MainActor
     func delete(container: ModelContainer = .current) {
         container.mainContext.delete(self)
+        try? container.mainContext.save()
     }
 }
 

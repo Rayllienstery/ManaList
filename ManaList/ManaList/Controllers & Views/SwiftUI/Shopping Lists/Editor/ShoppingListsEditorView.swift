@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct ShoppingListsView: View {
+struct ShoppingListsEditorView: View {
     @Bindable var store: StoreOf<ShoppingListsFeature>
 
     var body: some View {
@@ -57,8 +57,8 @@ struct ShoppingListsView: View {
 }
 
 #Preview {
-    ShoppingListsView(store: Store(initialState: ShoppingListsFeature.State(),
-                                   reducer: { ShoppingListsFeature() }))
+    ShoppingListsEditorView(store: Store(initialState: ShoppingListsFeature.State(),
+                                         reducer: { ShoppingListsFeature() }))
     .modelContainer(.current)
 }
 
