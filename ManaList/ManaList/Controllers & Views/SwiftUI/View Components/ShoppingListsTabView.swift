@@ -18,7 +18,6 @@ struct ShoppingListsTabView: View {
         ScrollView(.horizontal) {
             ZStack {
                 HStack(spacing: 8) {
-                    let _ = print(lists.map({ $0.id }))
                     TabView(list: summaryList)
                     ForEach(lists) {
                         TabView(list: $0)
