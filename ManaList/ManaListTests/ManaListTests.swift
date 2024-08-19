@@ -57,4 +57,21 @@ final class ManaListTests: XCTestCase {
         }
     }
 
+    @MainActor func testDelete() {
+        do {
+            let title1 = "title1"
+            let title2 = "title2"
+
+            try ShoppingList.insert(title: title1, container: container)
+            try ShoppingList.insert(title: title2, container: container)
+
+            let lists = ShoppingList.fetch(container: container)
+            lists[0].delete(container: container)
+
+            let updatedListsAfterDelete = ShoppingList.fetch(container: container)
+            XCTAssertTrue(updatedListsAfterDelete.count == 1, "\(updatedListsAfterDelete.map({$0.title}))")
+        } catch {
+            XCTFail()
+        }
+    }
 }
