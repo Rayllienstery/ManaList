@@ -12,7 +12,7 @@ import ComposableArchitecture
 struct DashboardFeature {
     @ObservableState
     struct State: Equatable {
-        @Presents var shoppingListsEditorDestination: ShoppingListsFeature.State?
+        @Presents var shoppingListsEditorDestination: ShoppingListsEditorFeature.State?
         var shoppingLists: [ShoppingList] = []
         var summaryList: ShoppingList
         var selectedShoppingListId: UUID
@@ -25,7 +25,7 @@ struct DashboardFeature {
     }
 
     enum Action: Sendable, BindableAction {
-        case shoppingLists(PresentationAction<ShoppingListsFeature.Action>)
+        case shoppingLists(PresentationAction<ShoppingListsEditorFeature.Action>)
         case binding(BindingAction<State>)
         case fetchShoppingLists
         case openShoppingLists
@@ -51,7 +51,7 @@ struct DashboardFeature {
                 return .none
 
             case .openShoppingLists:
-                state.shoppingListsEditorDestination = ShoppingListsFeature.State()
+                state.shoppingListsEditorDestination = ShoppingListsEditorFeature.State()
                 return .none
 
             case .selectList(let list):
@@ -60,7 +60,7 @@ struct DashboardFeature {
             }
         }
         .ifLet(\.$shoppingListsEditorDestination, action: \.shoppingLists) {
-            ShoppingListsFeature()
+            ShoppingListsEditorFeature()
         }
     }
 }
