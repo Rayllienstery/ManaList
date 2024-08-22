@@ -13,6 +13,7 @@ struct DashboardFeature {
     @ObservableState
     struct State: Equatable {
         @Presents var shoppingListsEditorDestination: ShoppingListsEditorFeature.State?
+        @Presents var itemsEditorDestination: ShoppingListItemsEditorReducer.State?
 
         var shoppingLists: [ShoppingList] = []
         var summaryList: ShoppingList
@@ -26,9 +27,12 @@ struct DashboardFeature {
 
     enum Action: Sendable, BindableAction {
         case shoppingLists(PresentationAction<ShoppingListsEditorFeature.Action>)
+        case itemsEditor(PresentationAction<ShoppingListItemsEditorReducer.Action>)
+        case openShoppingLists
+        case openItemsEditor(ShoppingList)
+
         case binding(BindingAction<State>)
         case fetchShoppingLists
-        case openShoppingLists
         case updateLists([ShoppingList])
         case selectList(ShoppingList)
     }
@@ -37,7 +41,7 @@ struct DashboardFeature {
         BindingReducer()
         Reduce { state, action in
             switch action {
-            case .shoppingLists(_):
+            case .shoppingLists(_), .itemsEditor(_):
                 return .none
             case .binding(_):
                 return .none
@@ -54,6 +58,10 @@ struct DashboardFeature {
                 state.shoppingListsEditorDestination = ShoppingListsEditorFeature.State()
                 return .none
 
+            case .openItemsEditor(let list):
+                state.itemsEditorDestination = ShoppingListItemsEditorReducer.State(selectedList: list)
+                return .none
+
             case .selectList(let list):
                 state.selectedShoppingList = list
                 return .none
@@ -61,6 +69,9 @@ struct DashboardFeature {
         }
         .ifLet(\.$shoppingListsEditorDestination, action: \.shoppingLists) {
             ShoppingListsEditorFeature()
+        }
+        .ifLet(\.$itemsEditorDestination, action: \.itemsEditor) {
+            ShoppingListItemsEditorReducer()
         }
     }
 }

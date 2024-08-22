@@ -28,6 +28,11 @@ struct DashboardView: View {
             .navigationDestination(item: $store.scope(state: \.shoppingListsEditorDestination, action: \.shoppingLists)) { store in
                 ShoppingListsEditorView(store: store)
             }
+            .sheet(item: $store.scope(state: \.itemsEditorDestination, action: \.itemsEditor)) { store in
+                NavigationStack {
+                    ShoppingListItemsEditorView(store: store)
+                }
+            }
             .task {
                 store.send(.fetchShoppingLists)
             }
@@ -70,7 +75,7 @@ struct DashboardView: View {
             }
         } footer: {
             Button {
-                
+                store.send(.openItemsEditor(list))
             } label: {
                 VStack(alignment: .leading) {
                     if list.items.isEmpty {
@@ -88,7 +93,6 @@ struct DashboardView: View {
 #Preview {
     PersistenceController.shared = PersistenceController.init(inMemory: true)
     _ = ShoppingList.stubArray(container: .current)
-    print(ShoppingList.fetch().count)
     return DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
         DashboardFeature()
     }))

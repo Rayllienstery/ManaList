@@ -11,6 +11,7 @@ import SwiftData
 
 struct ShoppingListItemsEditorView: View {
     @State var store: StoreOf<ShoppingListItemsEditorReducer>
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         List {
@@ -20,7 +21,15 @@ struct ShoppingListItemsEditorView: View {
         .task {
             store.send(.fetchLists)
         }
-        .navigationTitle("New Items")
+        .navigationTitle("Add Items")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Cancel") { dismiss() }
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Done") {  }
+            }
+        }
     }
 
     @ViewBuilder
