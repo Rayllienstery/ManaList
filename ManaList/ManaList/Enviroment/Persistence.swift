@@ -12,7 +12,7 @@ protocol Persistence {
     var sdContainer: ModelContainer { get }
 }
 
-struct PersistenceController: Persistence {
+struct PersistenceController: Persistence, Sendable {
     static var shared: Persistence = PersistenceController()
 
     var sdContainer: ModelContainer

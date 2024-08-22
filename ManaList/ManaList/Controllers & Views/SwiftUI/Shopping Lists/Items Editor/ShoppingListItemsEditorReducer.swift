@@ -12,6 +12,7 @@ import ComposableArchitecture
 struct ShoppingListItemsEditorReducer {
     @ObservableState
     struct State: Sendable, Equatable {
+        var isPresented: Bool = true
         var newItemTitle: String = ""
 
         var selectedList: ShoppingList
@@ -32,6 +33,7 @@ struct ShoppingListItemsEditorReducer {
         case selectList(ShoppingList)
         case addNewItem
         case doneTap
+        case dismiss
     }
 
     var body: some Reducer<State, Action> {
@@ -54,6 +56,19 @@ struct ShoppingListItemsEditorReducer {
                 state.newItemTitle.removeAll()
                 return .none
             case .doneTap:
+                let newItems = state.newItems
+                let selectedList = state.selectedList
+                return .run { @MainActor send in
+                    for newItem in newItems {
+                        newItem.list = selectedList
+                        PersistenceController.shared.sdContainer.mainContext.insert(newItem)
+                    }
+                    try? PersistenceController.shared.sdContainer.mainContext.save()
+                    print("Added \(newItems.count)")
+                    send(.dismiss)
+                }
+            case .dismiss:
+                state.isPresented = false
                 return .none
             case .binding(_): return .none
             }

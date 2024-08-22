@@ -27,7 +27,10 @@ struct ShoppingListItemsEditorView: View {
                 Button("Cancel") { dismiss() }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button("Done") {  }
+                Button("Done") { store.send(.doneTap) }
+                    .onChange(of: store.isPresented) { _, newValue in
+                        if !newValue { dismiss() }
+                    }
             }
         }
     }
@@ -84,7 +87,17 @@ struct ShoppingListItemsEditorView: View {
     PersistenceController.shared = PersistenceController.init(inMemory: true)
     _ = ShoppingList.stubArray(container: .current)
     let lists = try? ModelContainer.current.mainContext.fetch(FetchDescriptor<ShoppingList>())
-    
-    return ShoppingListItemsEditorViewWrapper()
-        .modelContainer(.current)
+
+    struct ModalWrapper: View {
+        @State var isPresented = true
+
+        var body: some View {
+            Button("Present"){ isPresented = true }
+                .sheet(isPresented: $isPresented, content: {
+                ShoppingListItemsEditorViewWrapper()
+                    .modelContainer(.current)
+            })
+        }
+    }
+    return ModalWrapper()
 }

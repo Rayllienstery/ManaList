@@ -80,6 +80,7 @@ struct DashboardView: View {
                 VStack(alignment: .leading) {
                     if list.items.isEmpty {
                         Divider()
+                            .padding(.top)
                     }
                     Label("Add Item", systemImage: "plus")
                         .foregroundStyle(Color(.secondaryLabel))
