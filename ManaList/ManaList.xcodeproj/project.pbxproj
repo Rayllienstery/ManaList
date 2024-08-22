@@ -12,6 +12,7 @@
 		BC756F2D2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F2C2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift */; };
 		BC756F302C74AA0E006E30FE /* ShoppingListItemsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F2F2C74AA0E006E30FE /* ShoppingListItemsEditorView.swift */; };
 		BC756F322C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F312C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift */; };
+		BC756F352C77BA8C006E30FE /* TrailingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F342C77BA8C006E30FE /* TrailingButton.swift */; };
 		BC8A67D72C6FB8BE00534616 /* ManaListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */; };
 		BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D82C6FB8BE00534616 /* DashboardView.swift */; };
 		BC8A67DB2C6FB8BF00534616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8A67DA2C6FB8BF00534616 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		BC756F2C2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListsEditorFeature.swift; sourceTree = "<group>"; };
 		BC756F2F2C74AA0E006E30FE /* ShoppingListItemsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemsEditorView.swift; sourceTree = "<group>"; };
 		BC756F312C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemsEditorReducer.swift; sourceTree = "<group>"; };
+		BC756F342C77BA8C006E30FE /* TrailingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingButton.swift; sourceTree = "<group>"; };
 		BC8A67D32C6FB8BE00534616 /* ManaList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaListApp.swift; sourceTree = "<group>"; };
 		BC8A67D82C6FB8BE00534616 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */,
+				BC756F342C77BA8C006E30FE /* TrailingButton.swift */,
 			);
 			path = "View Components";
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC756F2D2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift in Sources */,
+				BC756F352C77BA8C006E30FE /* TrailingButton.swift in Sources */,
 				BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */,
 				BC756F302C74AA0E006E30FE /* ShoppingListItemsEditorView.swift in Sources */,
 				BCA859642C737FCD005A71F9 /* DashboardReducer.swift in Sources */,

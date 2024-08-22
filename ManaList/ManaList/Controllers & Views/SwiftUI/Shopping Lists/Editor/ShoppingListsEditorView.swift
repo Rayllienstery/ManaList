@@ -39,9 +39,16 @@ struct ShoppingListsEditorView: View {
                     }
                 }
                 Section {
-                    TextField("Start typing here...", text: $store.listTitle)
-                    Button("Insert List") {
-                        store.send(.createList)
+                    HStack {
+                        TextField("Start typing here...", text: $store.listTitle)
+                            .submitLabel(.done)
+                            .onSubmit {
+                                store.send(.createList)
+                            }
+                        Spacer()
+                        if !store.listTitle.isEmpty {
+                            TrailingButton(title: "Insert") { store.send(.createList) }
+                        }
                     }
                 } header: {
                     Text("Create a new list here")

@@ -65,8 +65,15 @@ struct ShoppingListItemsEditorView: View {
             }
         }
         Section {
-            TextField("Start typing here...", text: $store.newItemTitle)
-            Button("Add") { store.send(.addNewItem) }
+            HStack {
+                TextField("Start typing here...", text: $store.newItemTitle)
+                    .submitLabel(.done)
+                    .onSubmit { store.send(.addNewItem) }
+                Spacer()
+                if !store.newItemTitle.isEmpty {
+                    TrailingButton(title: "Add") { store.send(.addNewItem) }
+                }
+            }
         } header: {
             Text("Add a new items")
         }
