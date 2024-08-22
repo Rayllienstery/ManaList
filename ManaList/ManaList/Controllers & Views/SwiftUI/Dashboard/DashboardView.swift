@@ -67,7 +67,7 @@ struct DashboardView: View {
     private func listSection(for list: ShoppingList, withHeader: Bool) -> some View {
         Section {
             ForEach(list.items.sorted(by: { $0.title < $1.title })) { item in
-                Text(item.title)
+                listItemCell(for: item)
             }
         } header: {
             if withHeader {
@@ -86,6 +86,22 @@ struct DashboardView: View {
                         .foregroundStyle(Color(.secondaryLabel))
                         .font(.callout)
                 }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func listItemCell(for item: ShoppingItem) -> some View {
+        HStack {
+            Text(item.title)
+            Spacer()
+            Button {
+                store.send(.completeItemTap(item), animation: .bouncy)
+            } label: {
+                Image(systemName: item.isCompleted ? "checkmark.circle.fill" : "circle")
+                    .imageScale(.large)
+                    .symbolEffect(.bounce, value: item.isCompleted ? 1 : 0)
+                    .foregroundStyle(Color(.label))
             }
         }
     }

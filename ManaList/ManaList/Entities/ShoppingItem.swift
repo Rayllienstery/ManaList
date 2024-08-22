@@ -10,14 +10,47 @@ import SwiftData
 
 @Model
 final class ShoppingItem: Sendable, Identifiable {
-    var id: UUID = UUID()
+    let id: UUID = UUID()
     var title: String
-    var isCompleted: Bool = false
     var list: ShoppingList? = nil
+
+    private(set) var isCompleted: Bool = false
+    @Transient private var task: (Task<Bool, Error>)?
 
     init(title: String, list: ShoppingList?) {
         self.title = title
         self.list = list
+    }
+
+    @MainActor
+    func checkAndDelete() async -> Bool {
+        isCompleted.toggle()
+
+        switch isCompleted {
+        case true:
+            task = .init(operation: {
+                do {
+                    try await Task.sleep(for: .seconds(2))
+                    if isCompleted {
+                        ModelContainer.current.mainContext.delete(self)
+                        try ModelContainer.current.mainContext.save()
+                        return true
+                    } else {
+                        return false
+                    }
+                } catch {
+                    print(error.localizedDescription)
+                    return false
+                }
+            })
+        case false:
+            task?.cancel()
+            task = nil
+            return false
+        }
+
+        let result: Bool = try! await task!.value
+        return result
     }
 }
 

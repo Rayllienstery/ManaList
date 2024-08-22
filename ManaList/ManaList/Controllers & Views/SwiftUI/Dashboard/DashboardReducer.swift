@@ -35,6 +35,7 @@ struct DashboardFeature {
         case fetchShoppingLists
         case updateLists([ShoppingList])
         case selectList(ShoppingList)
+        case completeItemTap(ShoppingItem)
     }
 
     var body: some Reducer<State, Action> {
@@ -48,7 +49,7 @@ struct DashboardFeature {
             case .fetchShoppingLists:
                 return .run { send in
                     let lists = await ShoppingList.fetch()
-                    await send(.updateLists(lists))
+                    await send(.updateLists(lists), animation: .bouncy)
                 }
             case .updateLists(let lists):
                 state.shoppingLists = lists
@@ -65,6 +66,14 @@ struct DashboardFeature {
             case .selectList(let list):
                 state.selectedShoppingList = list
                 return .none
+
+            case .completeItemTap(let item):
+                return .run { send in
+                    let result = await item.checkAndDelete()
+                    if result {
+                        await send(.fetchShoppingLists)
+                    }
+                }
             }
         }
         .ifLet(\.$shoppingListsEditorDestination, action: \.shoppingLists) {

@@ -64,7 +64,6 @@ struct ShoppingListItemsEditorReducer {
                         PersistenceController.shared.sdContainer.mainContext.insert(newItem)
                     }
                     try? PersistenceController.shared.sdContainer.mainContext.save()
-                    print("Added \(newItems.count)")
                     send(.dismiss)
                 }
             case .dismiss:
