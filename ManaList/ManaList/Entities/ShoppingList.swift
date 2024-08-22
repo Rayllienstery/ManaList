@@ -16,6 +16,7 @@ final class ShoppingList: Sendable, Identifiable, Equatable {
     var title: String
     var items: [ShoppingItem] = []
     var isSummary: Bool = false
+    var creationTimestamp = Date.now
 
     init(title: String) {
         self.title = title
@@ -37,7 +38,7 @@ final class ShoppingList: Sendable, Identifiable, Equatable {
     @MainActor 
     static func fetch(container: ModelContainer = .current) -> [ShoppingList] {
         do {
-            return try container.mainContext.fetch(FetchDescriptor<ShoppingList>())
+            return try container.mainContext.fetch(FetchDescriptor<ShoppingList>(sortBy: [.init(\.creationTimestamp)] ))
         } catch {
             fatalError("ShoppingList: \(error.localizedDescription)")
         }

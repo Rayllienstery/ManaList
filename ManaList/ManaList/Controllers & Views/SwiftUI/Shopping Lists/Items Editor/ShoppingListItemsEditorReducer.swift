@@ -11,7 +11,7 @@ import ComposableArchitecture
 @Reducer
 struct ShoppingListItemsEditorReducer {
     @ObservableState
-    struct State: Sendable, Equatable {
+    struct State: Sendable {
         var isPresented: Bool = true
         var newItemTitle: String = ""
 

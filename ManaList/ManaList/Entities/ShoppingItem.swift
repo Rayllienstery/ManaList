@@ -20,3 +20,13 @@ final class ShoppingItem: Sendable, Identifiable {
         self.list = list
     }
 }
+
+extension ShoppingItem {
+    @MainActor
+    static func stubArray(list: ShoppingList, container: ModelContainer = PersistenceController.init(inMemory: true).sdContainer) -> [ShoppingItem] {
+        let lists = (0..<5).map({ ShoppingItem(title: "SI Stub \($0)", list: list) })
+        lists.forEach({ container.mainContext.insert($0) })
+        try! container.mainContext.save()
+        return lists
+    }
+}

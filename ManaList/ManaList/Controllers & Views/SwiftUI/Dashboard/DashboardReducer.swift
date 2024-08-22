@@ -11,7 +11,7 @@ import ComposableArchitecture
 @Reducer
 struct DashboardFeature {
     @ObservableState
-    struct State: Equatable {
+    struct State: Sendable{
         @Presents var shoppingListsEditorDestination: ShoppingListsEditorFeature.State?
         @Presents var itemsEditorDestination: ShoppingListItemsEditorReducer.State?
 

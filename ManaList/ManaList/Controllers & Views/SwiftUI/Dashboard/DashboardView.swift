@@ -66,7 +66,7 @@ struct DashboardView: View {
     @ViewBuilder
     private func listSection(for list: ShoppingList, withHeader: Bool) -> some View {
         Section {
-            ForEach(list.items) { item in
+            ForEach(list.items.sorted(by: { $0.title < $1.title })) { item in
                 Text(item.title)
             }
         } header: {
@@ -93,7 +93,8 @@ struct DashboardView: View {
 
 #Preview {
     PersistenceController.shared = PersistenceController.init(inMemory: true)
-    _ = ShoppingList.stubArray(container: .current)
+    let lists = ShoppingList.stubArray(container: .current)
+    _ = ShoppingItem.stubArray(list: lists[0], container: .current)
     return DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
         DashboardFeature()
     }))
