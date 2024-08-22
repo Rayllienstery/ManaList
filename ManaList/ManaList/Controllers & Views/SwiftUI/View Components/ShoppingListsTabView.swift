@@ -58,10 +58,9 @@ struct ShoppingListsTabView: View {
         @State var summary: ShoppingList
 
         init(lists: [ShoppingList]) {
-            let summaryList = ShoppingList(title: "Summary", isSummary: true)
             self.lists = lists
-            self.summary = summaryList
-            self.selectedId = summaryList.id
+            self.summary = ShoppingList.summaryList
+            self.selectedId = ShoppingList.summaryList.id
         }
 
         var body: some View {
@@ -87,6 +86,6 @@ struct ShoppingListsTabView: View {
         }
     }
 
-    let lists = ShoppingList.stabData()
+    let lists = ShoppingList.stubArray()
     return ShoppingListsTabPreview(lists: lists)
 }

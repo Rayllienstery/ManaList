@@ -10,6 +10,8 @@
 		BC067C7E2C73B2980099268E /* ShoppingListsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */; };
 		BC067C802C73DE1B0099268E /* ShoppingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC067C7F2C73DE1B0099268E /* ShoppingItem.swift */; };
 		BC756F2D2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F2C2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift */; };
+		BC756F302C74AA0E006E30FE /* ShoppingListItemsEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F2F2C74AA0E006E30FE /* ShoppingListItemsEditorView.swift */; };
+		BC756F322C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC756F312C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift */; };
 		BC8A67D72C6FB8BE00534616 /* ManaListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */; };
 		BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8A67D82C6FB8BE00534616 /* DashboardView.swift */; };
 		BC8A67DB2C6FB8BF00534616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC8A67DA2C6FB8BF00534616 /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListsTabView.swift; sourceTree = "<group>"; };
 		BC067C7F2C73DE1B0099268E /* ShoppingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItem.swift; sourceTree = "<group>"; };
 		BC756F2C2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListsEditorFeature.swift; sourceTree = "<group>"; };
+		BC756F2F2C74AA0E006E30FE /* ShoppingListItemsEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemsEditorView.swift; sourceTree = "<group>"; };
+		BC756F312C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemsEditorReducer.swift; sourceTree = "<group>"; };
 		BC8A67D32C6FB8BE00534616 /* ManaList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC8A67D62C6FB8BE00534616 /* ManaListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManaListApp.swift; sourceTree = "<group>"; };
 		BC8A67D82C6FB8BE00534616 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -93,6 +97,15 @@
 				BC067C7D2C73B2980099268E /* ShoppingListsTabView.swift */,
 			);
 			path = "View Components";
+			sourceTree = "<group>";
+		};
+		BC756F2E2C74A9F5006E30FE /* Items Editor */ = {
+			isa = PBXGroup;
+			children = (
+				BC756F2F2C74AA0E006E30FE /* ShoppingListItemsEditorView.swift */,
+				BC756F312C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift */,
+			);
+			path = "Items Editor";
 			sourceTree = "<group>";
 		};
 		BC8A67CA2C6FB8BE00534616 = {
@@ -208,6 +221,7 @@
 		BC8A680B2C6FEF6600534616 /* Shopping Lists */ = {
 			isa = PBXGroup;
 			children = (
+				BC756F2E2C74A9F5006E30FE /* Items Editor */,
 				BC8A680C2C6FEF8E00534616 /* Editor */,
 			);
 			path = "Shopping Lists";
@@ -368,7 +382,9 @@
 			files = (
 				BC756F2D2C74A4EA006E30FE /* ShoppingListsEditorFeature.swift in Sources */,
 				BC8A67D92C6FB8BE00534616 /* DashboardView.swift in Sources */,
+				BC756F302C74AA0E006E30FE /* ShoppingListItemsEditorView.swift in Sources */,
 				BCA859642C737FCD005A71F9 /* DashboardReducer.swift in Sources */,
+				BC756F322C74AA37006E30FE /* ShoppingListItemsEditorReducer.swift in Sources */,
 				BC8A68102C6FF70B00534616 /* ShoppingList.swift in Sources */,
 				BC8A680E2C6FEFAE00534616 /* ShoppingListsEditorView.swift in Sources */,
 				BC067C802C73DE1B0099268E /* ShoppingItem.swift in Sources */,

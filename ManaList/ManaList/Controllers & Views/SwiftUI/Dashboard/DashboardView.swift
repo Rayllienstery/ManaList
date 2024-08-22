@@ -14,16 +14,8 @@ struct DashboardView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section { } header: {
-                    ShoppingListsTabView(lists: $store.shoppingLists,
-                                         selectedListId: $store.selectedShoppingListId,
-                                         summaryList: $store.summaryList) { selectedList in
-                        store.send(.selectList(selectedList))
-                    }
-                    .textCase(nil)
-                    .padding(.horizontal, -40)
-                    .padding(.bottom, 16)
-                }
+                headerTabView
+                contentView
             }
             .toolbar {
                 Button {
@@ -41,11 +33,64 @@ struct DashboardView: View {
             }
         }
     }
+
+    @ViewBuilder
+    private var headerTabView: some View {
+        Section { } header: {
+            ShoppingListsTabView(lists: $store.shoppingLists,
+                                 selectedListId: $store.selectedShoppingList.id,
+                                 summaryList: $store.summaryList) { selectedList in
+                store.send(.selectList(selectedList))
+            }
+            .textCase(nil)
+            .padding(.horizontal, -40)
+            .padding(.bottom, 16)
+        }
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        switch store.selectedShoppingList === ShoppingList.summaryList {
+        case true:
+            ForEach(store.shoppingLists) { listSection(for: $0, withHeader: true) }
+        case false:
+            listSection(for: store.selectedShoppingList, withHeader: false)
+        }
+    }
+
+    @ViewBuilder
+    private func listSection(for list: ShoppingList, withHeader: Bool) -> some View {
+        Section {
+            ForEach(list.items) { item in
+                Text(item.title)
+            }
+        } header: {
+            if withHeader {
+                Text(list.title)
+            }
+        } footer: {
+            Button {
+                
+            } label: {
+                VStack(alignment: .leading) {
+                    if list.items.isEmpty {
+                        Divider()
+                    }
+                    Label("Add Item", systemImage: "plus")
+                        .foregroundStyle(Color(.secondaryLabel))
+                        .font(.callout)
+                }
+            }
+        }
+    }
 }
 
 #Preview {
-    DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
+    PersistenceController.shared = PersistenceController.init(inMemory: true)
+    _ = ShoppingList.stubArray(container: .current)
+    print(ShoppingList.fetch().count)
+    return DashboardView(store: .init(initialState: DashboardFeature.State(), reducer: {
         DashboardFeature()
     }))
-    .modelContainer(PersistenceController.shared.sdContainer)
+    .modelContainer(.current)
 }

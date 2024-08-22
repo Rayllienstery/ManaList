@@ -13,14 +13,14 @@ struct DashboardFeature {
     @ObservableState
     struct State: Equatable {
         @Presents var shoppingListsEditorDestination: ShoppingListsEditorFeature.State?
+
         var shoppingLists: [ShoppingList] = []
         var summaryList: ShoppingList
-        var selectedShoppingListId: UUID
+        var selectedShoppingList: ShoppingList
 
         init() {
-            let summaryListMock = ShoppingList(title: "Summary", isSummary: true)
-            self.summaryList = summaryListMock
-            self.selectedShoppingListId = summaryListMock.id
+            self.summaryList = ShoppingList.summaryList
+            self.selectedShoppingList = ShoppingList.summaryList
         }
     }
 
@@ -55,7 +55,7 @@ struct DashboardFeature {
                 return .none
 
             case .selectList(let list):
-                state.selectedShoppingListId = list.id
+                state.selectedShoppingList = list
                 return .none
             }
         }
